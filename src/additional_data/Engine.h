@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Player.h";
+#include "Player.h"
+#include "Bullet.h"
+#include <vector>
  
 using namespace sf;
  
@@ -20,6 +22,9 @@ private:
     void input();
     void update();
     void draw();
+
+    //Куча пуль
+    std::vector<Bullet> bullets;
  
 public:
     // Конструктор движка

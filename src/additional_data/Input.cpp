@@ -52,5 +52,11 @@ void Engine::input()
     else
     {
         m_Player.getUnshifted();
-    }    
+    }
+
+    if (Keyboard::isKeyPressed(Keyboard::Key::Z))
+    {
+        bullets.push_back(Bullet());
+        bullets[bullets.size()-1].setPosition(m_Player.getPosition());
+    }
 }

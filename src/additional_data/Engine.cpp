@@ -9,7 +9,7 @@ Engine::Engine()
  
     m_Window.create(VideoMode({resolution.x, resolution.y}),
         "Simple Game Engine",
-        State::Fullscreen);
+        State::Windowed);
     m_Window.setFramerateLimit(60);
     // Загружаем фон в текстуру
     // Подготовьте изображение под ваш размер экрана в редакторе

@@ -35,6 +35,8 @@ public:
  
     // Для отправки спрайта в главную функцию
     Sprite getSprite();
+
+    Vector2f getPosition();
  
     // Для движения Боба
     void moveLeft();

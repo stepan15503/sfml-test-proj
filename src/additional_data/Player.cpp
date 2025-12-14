@@ -73,6 +73,10 @@ void Player::getUnshifted()
     m_ShiftPressed = false;
 }
  
+Vector2f Player::getPosition()
+{
+    return m_Position;
+}
 // Двигаем Боба на основании пользовательского ввода в этом кадре,
 // прошедшего времени и скорости
 void Player::update()
@@ -86,21 +90,25 @@ void Player::update()
     if (m_RightPressed and not m_LeftPressed)
     {
         m_Position.x += speed;
+        if (m_Position.x>444) m_Position.x=444;
     }
  
     if (m_LeftPressed and not m_RightPressed)
     {
         m_Position.x -= speed;
+        if (m_Position.x<12) m_Position.x=12;
     }
 
     if (m_UpPressed and not m_DownPressed)
     {
         m_Position.y -= speed;
+        if (m_Position.y < 12) m_Position.y =12;
     }
 
      if (m_DownPressed and not m_UpPressed)
     {
         m_Position.y += speed;
+        if (m_Position.y>420) m_Position.y=420;
     }
     // Теперь сдвигаем спрайт на новую позицию
     (*m_Sprite).setPosition(m_Position);   

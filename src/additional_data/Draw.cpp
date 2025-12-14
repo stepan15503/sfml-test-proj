@@ -9,6 +9,10 @@ void Engine::draw()
     m_Window.draw(*m_BackgroundSprite);
     // И Боба
     m_Window.draw(m_Player.getSprite());
+
+    for (int i=0;i<bullets.size();i++){
+        m_Window.draw(bullets[i].getSprite());
+    }
  
     // Отображаем все, что нарисовали
     m_Window.display();

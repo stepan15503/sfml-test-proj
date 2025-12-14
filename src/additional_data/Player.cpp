@@ -6,7 +6,8 @@ Player::Player()
     // Вписываем в переменную скорость
     m_Speed = 4;
     m_Focused_Speed =2;
- 
+    
+    m_TopLeftCorner = {-9,-21};
     // Связываем текстуру и спрайт
     if (!m_Texture.loadFromFile("assets/placeholder.png"))
     {
@@ -18,6 +19,7 @@ Player::Player()
     // Устанавливаем начальную позицию
     m_Position.x = 300;
     m_Position.y = 300;
+
  
 }
  
@@ -81,7 +83,10 @@ Vector2f Player::getPosition()
 {
     return m_Position;
 }
-
+Vector2f Player::getTopLeftPosition()
+{
+    return m_Position+m_TopLeftCorner;
+}
 //Движение на основании ввода
 
 void Player::update()
@@ -95,27 +100,27 @@ void Player::update()
     if (m_RightPressed and not m_LeftPressed)
     {
         m_Position.x += speed;
-        if (m_Position.x>444) m_Position.x=444;
+        if (m_Position.x>459) m_Position.x=459;
     }
  
     if (m_LeftPressed and not m_RightPressed)
     {
         m_Position.x -= speed;
-        if (m_Position.x<12) m_Position.x=12;
+        if (m_Position.x<13) m_Position.x=13;
     }
 
     if (m_UpPressed and not m_DownPressed)
     {
         m_Position.y -= speed;
-        if (m_Position.y < 12) m_Position.y =12;
+        if (m_Position.y < 13) m_Position.y =13;
     }
 
      if (m_DownPressed and not m_UpPressed)
     {
         m_Position.y += speed;
-        if (m_Position.y>420) m_Position.y=420;
+        if (m_Position.y>459) m_Position.y=459;
     }
     // Cдвигаем спрайт на новую позицию
-    (*m_Sprite).setPosition(m_Position);   
+    (*m_Sprite).setPosition(m_Position+m_TopLeftCorner);   
  
 }

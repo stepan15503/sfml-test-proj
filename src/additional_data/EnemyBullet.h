@@ -3,7 +3,7 @@
  
 using namespace sf;
  
-class Bullet
+class EnemyBullet
 {
     // Все private переменные могут быть доступны только внутри объекта
 private:
@@ -25,7 +25,7 @@ private:
 public: // Открытые методы
  
     // Настраиваем в конструкторе
-    Bullet();
+    EnemyBullet();
  
     // Для отправки спрайта в главную функцию
     Sprite getSprite();
@@ -35,7 +35,8 @@ public: // Открытые методы
     Vector2f getTopLeftPosition();
 
     void setPosition(Vector2f position);
- 
+    
+    void EnemyBullet::setSpeedVector(Vector2f vector);
     // Для движения
     void move();
  

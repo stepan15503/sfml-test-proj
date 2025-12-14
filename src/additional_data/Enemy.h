@@ -3,7 +3,7 @@
  
 using namespace sf;
  
-class Bullet
+class Enemy
 {
     // Все private переменные могут быть доступны только внутри объекта
 private:
@@ -16,28 +16,48 @@ private:
     // Добавляем текстуру
     Texture m_Texture;
  
-    // Вектор скорости
- 
-    Vector2f m_Speed;
-    
+    // Скорость и скорость в фокусе в пикселях за кадр
+    int m_Speed;
+    int m_Focused_Speed;
     // Положение левого угла(места откруда начинается отрисовка текстуры относительно центра)
     Vector2f m_TopLeftCorner;
-public: // Открытые методы
+
+    // Число кадров неуязвимости
+    unsigned int m_InvFrameCount;
+    // число хитпойнтов
+    int m_HP;
+
+ public:
+    // Конструктор
+    Player();
  
-    // Настраиваем в конструкторе
-    Bullet();
- 
-    // Для отправки спрайта в главную функцию
+    // Для отправки спрайта/позиции в главную функцию
     Sprite getSprite();
 
-    // Для запроса координат(мб не понадобится)
     Vector2f getPosition();
-    Vector2f getTopLeftPosition();
 
-    void setPosition(Vector2f position);
+    Vector2f getTopLeftPosition();
+    // Для движения от клавиш
+    void moveLeft();
  
-    // Для движения
-    void move();
+    void moveRight();
+
+    void moveUp();
+
+    void moveDown();
+
+    void getShifted();
+ 
+    // Прекращение движения
+    void stopLeft();
+ 
+    void stopRight();
+
+    void stopUp();
+
+    void stopDown();
+
+    void getUnshifted();
  
     // Эта функция будет вызываться на каждый кадр
     void update();

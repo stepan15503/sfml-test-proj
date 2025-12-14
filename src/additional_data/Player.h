@@ -26,9 +26,18 @@ private:
     // Скорость и скорость в фокусе в пикселях за кадр
     int m_Speed;
     int m_Focused_Speed;
- 
-    // Открытые методы
-public:
+    // Положение левого угла(места откруда начинается отрисовка текстуры относительно центра)
+    Vector2f m_TopLeftCorner;
+
+    // Число кадров неуязвимости
+    unsigned int m_InvFrameCount;
+
+    unsigned int m_Lives;
+
+    unsigned int m_Bombs;
+
+    unsigned int m_Power;
+public:    // Открытые методы
  
     // Конструктор
     Player();
@@ -37,7 +46,8 @@ public:
     Sprite getSprite();
 
     Vector2f getPosition();
- 
+
+    Vector2f getTopLeftPosition();
     // Для движения от клавиш
     void moveLeft();
  

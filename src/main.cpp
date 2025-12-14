@@ -18,7 +18,7 @@ int main()
         window.clear();
         window.display();
     }
-}*/
+}
 
 #include <SFML/Graphics.hpp>
 
@@ -68,4 +68,18 @@ int main()
 
         
     }
+}*/
+
+#include "additional_data/Engine.h";
+
+int main()
+{
+    // Объявляем экземпляр класса Engine
+    Engine engine;
+ 
+    // Вызываем функцию start
+    engine.start();
+ 
+    // Останавливаем программу программу, когда движок остановлен
+    return 0;
 }

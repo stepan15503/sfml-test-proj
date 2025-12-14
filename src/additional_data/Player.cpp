@@ -1,17 +1,21 @@
 #include "Player.h"
- 
+
+
 Player::Player()
 {
-    // Вписываем в переменную скорость Боба
+    // Вписываем в переменную скорость
     m_Speed = 4;
     m_Focused_Speed =2;
  
     // Связываем текстуру и спрайт
-    m_Texture.loadFromFile("assets/placeholder.png");
+    if (!m_Texture.loadFromFile("assets/placeholder.png"))
+    {
+        printf("Ошибка загрузки"); //Добавить повторные попытки/замену на текстуру ошибки(посмотреть на возможность создания оной векторно а не загрузкой из файла)
+    }
     
     m_Sprite= new Sprite(m_Texture);     
  
-    // Устанавливаем начальную позицию Боба в пикселях
+    // Устанавливаем начальную позицию
     m_Position.x = 300;
     m_Position.y = 300;
  
@@ -77,8 +81,9 @@ Vector2f Player::getPosition()
 {
     return m_Position;
 }
-// Двигаем Боба на основании пользовательского ввода в этом кадре,
-// прошедшего времени и скорости
+
+//Движение на основании ввода
+
 void Player::update()
 {
     int speed=m_Speed;
@@ -110,7 +115,7 @@ void Player::update()
         m_Position.y += speed;
         if (m_Position.y>420) m_Position.y=420;
     }
-    // Теперь сдвигаем спрайт на новую позицию
+    // Cдвигаем спрайт на новую позицию
     (*m_Sprite).setPosition(m_Position);   
  
 }

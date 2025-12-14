@@ -22,9 +22,12 @@ private:
     void input();
     void update();
     void draw();
+    void handleEvents();
 
     //Куча пуль
-    std::vector<Bullet> bullets;
+    //std::vector<Bullet> bullets;
+    std::vector<std::unique_ptr<Bullet>> bullets;
+    bool m_IsFocused; // Фокус окна
  
 public:
     // Конструктор движка

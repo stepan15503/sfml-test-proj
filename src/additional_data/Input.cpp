@@ -56,7 +56,16 @@ void Engine::input()
 
     if (Keyboard::isKeyPressed(Keyboard::Key::Z))
     {
-        bullets.push_back(Bullet());
-        bullets[bullets.size()-1].setPosition(m_Player.getPosition());
+        bullets.push_back(std::make_unique<Bullet>());
+        bullets[bullets.size()-1]->setPosition(m_Player.getPosition());
+    }
+
+    // Удаляем пули, которые вышли за пределы экрана
+    for (int i = bullets.size() - 1; i >= 0; i--)
+    {
+        if (bullets[i]->getPosition().y < -50) // Если пуля далеко за верхней границей
+        {
+            bullets.erase(bullets.begin() + i);
+        }
     }
 }

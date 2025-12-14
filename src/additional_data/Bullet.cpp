@@ -1,13 +1,19 @@
 #include "Bullet.h"
- 
+
+
 Bullet::Bullet()
 {
     // Вписываем в переменную скорость
     m_Speed={0,-10};
     // Связываем текстуру и спрайт
-    m_Texture.loadFromFile("assets/bullet.png");
+
+    // Связываем текстуру и спрайт
+    if (!m_Texture.loadFromFile("assets/bullet.png"))
+    {
+        printf("Ошибка загрузки bullet"); //Прикрутить плейсхолдер что рисуется без допфайлов вместо пули
+    }
     
-    m_Sprite= new Sprite(m_Texture);     
+    m_Sprite= new Sprite(m_Texture);
  
     // Устанавливаем начальную позицию пули в пикселях
     m_Position.x = 300;

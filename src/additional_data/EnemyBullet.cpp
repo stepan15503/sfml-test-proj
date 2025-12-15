@@ -16,8 +16,8 @@ EnemyBullet::EnemyBullet()
     m_Sprite= new Sprite(m_Texture);
  
     // Устанавливаем начальную позицию пули в пикселях
-    m_Position.x = 300;
-    m_Position.y = 300;
+    m_Position.x = 0;
+    m_Position.y = 0;
     
     m_TopLeftCorner = {-2,-2};
 }

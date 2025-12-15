@@ -36,7 +36,7 @@ public: // Открытые методы
 
     void setPosition(Vector2f position);
     
-    void EnemyBullet::setSpeedVector(Vector2f vector);
+    void setSpeedVector(Vector2f vector);
     // Для движения
     void move();
  

@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Bullet.h"
 #include <vector>
+#include "Enemy.h"
  
 using namespace sf;
  
@@ -27,6 +28,10 @@ private:
     //Куча пуль
     //std::vector<Bullet> bullets;
     std::vector<std::unique_ptr<Bullet>> bullets;
+
+    std::vector<std::unique_ptr<EnemyBullet>> enemybullets;
+
+    Enemy m_Enemy;
     bool m_IsFocused; // Фокус окна
  
 public:

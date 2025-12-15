@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
- 
+#include "EnemyBullet.h"
+
 using namespace sf;
  
 class Enemy
@@ -18,7 +19,6 @@ private:
  
     // Скорость и скорость в фокусе в пикселях за кадр
     int m_Speed;
-    int m_Focused_Speed;
     // Положение левого угла(места откруда начинается отрисовка текстуры относительно центра)
     Vector2f m_TopLeftCorner;
 
@@ -29,7 +29,7 @@ private:
 
  public:
     // Конструктор
-    Player();
+    Enemy();
  
     // Для отправки спрайта/позиции в главную функцию
     Sprite getSprite();
@@ -37,29 +37,8 @@ private:
     Vector2f getPosition();
 
     Vector2f getTopLeftPosition();
-    // Для движения от клавиш
-    void moveLeft();
- 
-    void moveRight();
-
-    void moveUp();
-
-    void moveDown();
-
-    void getShifted();
- 
-    // Прекращение движения
-    void stopLeft();
- 
-    void stopRight();
-
-    void stopUp();
-
-    void stopDown();
-
-    void getUnshifted();
  
     // Эта функция будет вызываться на каждый кадр
-    void update();
+    void update(Vector2f playerposition, std::vector<std::unique_ptr<EnemyBullet>>* enemybullets);
  
 };

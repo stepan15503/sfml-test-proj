@@ -10,13 +10,13 @@ void Engine::draw()
 
     m_Window.draw(m_Player.getSprite());
 
-
-    for (int i=0;i<bullets.size();i++){
-        m_Window.draw(bullets[i]->getSprite());
+    for (auto iter=bullets.begin();iter!=bullets.end();iter++){
+        m_Window.draw((*iter)->getSprite());
     }
-     for (int i=0;i<enemybullets.size();i++){
-        m_Window.draw(enemybullets[i]->getSprite());
-    }   
+    for (auto iter=enemybullets.begin();iter!=enemybullets.end();iter++){
+        (*iter)->update();
+        m_Window.draw((*iter)->getSprite());
+    }
     // Отображаем все, что нарисовали
     m_Window.display();
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
- 
+#include "EnemyBullet.h"
+#include <algorithm>
 using namespace sf;
  
 class Player
@@ -8,7 +9,7 @@ class Player
     // Все private переменные могут быть доступны только внутри объекта
 private:
  
-    Vector2f m_Position;
+    Vector2i m_Position;
  
     // Объявляем объект Sprite
     Sprite *m_Sprite;
@@ -27,7 +28,7 @@ private:
     int m_Speed;
     int m_Focused_Speed;
     // Положение левого угла(места откруда начинается отрисовка текстуры относительно центра)
-    Vector2f m_TopLeftCorner;
+    Vector2i m_TopLeftCorner;
 
     // Число кадров неуязвимости
     unsigned int m_InvFrameCount;
@@ -45,9 +46,12 @@ public:    // Открытые методы
     // Для отправки спрайта/позиции в главную функцию
     Sprite getSprite();
 
-    Vector2f getPosition();
+    Vector2i getPosition();
 
-    Vector2f getTopLeftPosition();
+    Vector2i getTopLeftPosition();
+
+    Vector2i getSpeedVector();
+
     // Для движения от клавиш
     void moveLeft();
  
@@ -69,8 +73,9 @@ public:    // Открытые методы
     void stopDown();
 
     void getUnshifted();
- 
+
     // Эта функция будет вызываться на каждый кадр
-    void update();
- 
+    void update(bool isShot,std::list<std::unique_ptr<EnemyBullet>>* enemybullets);
+
+    
 };

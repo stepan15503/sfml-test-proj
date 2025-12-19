@@ -39,6 +39,6 @@ private:
     Vector2f getTopLeftPosition();
  
     // Эта функция будет вызываться на каждый кадр
-    void update(Vector2f playerposition, std::vector<std::unique_ptr<EnemyBullet>>* enemybullets);
+    void update(Vector2i playerposition, std::list<std::unique_ptr<EnemyBullet>>* enemybullets);
  
 };

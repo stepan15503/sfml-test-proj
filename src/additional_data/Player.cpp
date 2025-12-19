@@ -18,9 +18,7 @@ Player::Player()
  
     // Устанавливаем начальную позицию
     m_Position.x = 300;
-    m_Position.y = 300;
-
- 
+    m_Position.y = 300; 
 }
  
 // Делаем приватный спрайт доступным для функции draw()
@@ -79,19 +77,20 @@ void Player::getUnshifted()
     m_ShiftPressed = false;
 }
  
-Vector2f Player::getPosition()
+Vector2i Player::getPosition()
 {
     return m_Position;
 }
-Vector2f Player::getTopLeftPosition()
+Vector2i Player::getTopLeftPosition()
 {
     return m_Position+m_TopLeftCorner;
 }
 //Движение на основании ввода
 
-void Player::update()
+Vector2i Player::getSpeedVector() //Получаем вектор куда сместится спрайт.
 {
     int speed=m_Speed;
+    Vector2i speedvec={0,0};
 
     if (m_ShiftPressed){
         speed = m_Focused_Speed;
@@ -99,28 +98,46 @@ void Player::update()
 
     if (m_RightPressed and not m_LeftPressed)
     {
-        m_Position.x += speed;
-        if (m_Position.x>459) m_Position.x=459;
+        if (m_Position.x+speed>459) speedvec.x=459-m_Position.x;
+        else speedvec.x=speed;
     }
  
     if (m_LeftPressed and not m_RightPressed)
     {
-        m_Position.x -= speed;
-        if (m_Position.x<13) m_Position.x=13;
+        if (m_Position.x-speed<13) speedvec.x=13-m_Position.x;
+        else speedvec.x=-speed;
     }
 
     if (m_UpPressed and not m_DownPressed)
     {
-        m_Position.y -= speed;
-        if (m_Position.y < 13) m_Position.y =13;
+        if (m_Position.y-speed<13) speedvec.y=13-m_Position.y;
+        else speedvec.y=-speed;
     }
 
      if (m_DownPressed and not m_UpPressed)
     {
-        m_Position.y += speed;
-        if (m_Position.y>459) m_Position.y=459;
+        if (m_Position.y+speed>459) speedvec.y=459-m_Position.y;
+        else speedvec.y=speed;
     }
+    return speedvec;
+}
+
+void Player::update(bool isShot,std::list<std::unique_ptr<EnemyBullet>>* enemybullets)
+{
+    if (!enemybullets){
+        printf("а где массив с вражескими пулями?");
+        return;
+    }
+    if (m_InvFrameCount!=0){
+        m_InvFrameCount--;
+    }
+    else if (isShot==1 and m_InvFrameCount==0){
+        m_InvFrameCount=30;
+        (*enemybullets).clear();
+        m_Position={100,300};
+    }
+    if (m_InvFrameCount<24)    m_Position=m_Position+getSpeedVector();
     // Cдвигаем спрайт на новую позицию
-    (*m_Sprite).setPosition(m_Position+m_TopLeftCorner);   
+    (*m_Sprite).setPosition({m_Position.x+m_TopLeftCorner.x , m_Position.y+m_TopLeftCorner.y});   
  
 }

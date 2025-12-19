@@ -34,7 +34,7 @@ public: // Открытые методы
     Vector2f getPosition();
     Vector2f getTopLeftPosition();
 
-    void setPosition(Vector2f position);
+    void setPosition(Vector2i position);
  
     // Для движения
     void move();

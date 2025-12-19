@@ -39,17 +39,17 @@ Vector2f Enemy::getTopLeftPosition()
 }
 //Выстрел по объекту
 
-void Enemy::update(Vector2f playerposition, std::vector<std::unique_ptr<EnemyBullet>>* enemybullets)
+void Enemy::update(Vector2i playerposition, std::list<std::unique_ptr<EnemyBullet>>* enemybullets)
 {
-    Vector2f positionDelta=playerposition-m_Position;
+    Vector2i positionDelta={playerposition.x-m_Position.x,playerposition.y-m_Position.y};
     (*enemybullets).push_back(std::make_unique<EnemyBullet>());
-    (*enemybullets)[(*enemybullets).size()-1]->setPosition(m_Position);
-    (*enemybullets)[(*enemybullets).size()-1]->setSpeedVector({positionDelta.x/sqrt(positionDelta.x*positionDelta.x+positionDelta.y*positionDelta.y),positionDelta.y/sqrt(positionDelta.x*positionDelta.x+positionDelta.y*positionDelta.y)});
-    for (int i = (*enemybullets).size() - 1; i >= 0; i--)
+    (*enemybullets).back()->setPosition(m_Position);
+    (*enemybullets).back()->setSpeedVector({positionDelta.x/sqrt(positionDelta.x*positionDelta.x+positionDelta.y*positionDelta.y),positionDelta.y/sqrt(positionDelta.x*positionDelta.x+positionDelta.y*positionDelta.y)});
+    for (auto iter = (*enemybullets).begin(); iter != (*enemybullets).end(); iter++)
     {
-        if ((*enemybullets)[i]->getPosition().y < -50) // Если пуля далеко за верхней границей
+        if ((*iter)->getPosition().y < -50) // Если пуля далеко за верхней границей
         {
-            (*enemybullets).erase((*enemybullets).begin() + i);
+            iter=(*enemybullets).erase(iter);
         }
     } 
 }

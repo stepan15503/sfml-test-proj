@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Player.h"
 #include "Bullet.h"
-#include <vector>
+#include <list>
 #include "Enemy.h"
  
 using namespace sf;
@@ -25,11 +25,13 @@ private:
     void draw();
     void handleEvents();
 
+    bool checkCollisionPE(std::list<std::unique_ptr<EnemyBullet>>* enemybullets, Vector2i PlayerPosition, Vector2i PlayerSpeedVector);
+
     //Куча пуль
     //std::vector<Bullet> bullets;
-    std::vector<std::unique_ptr<Bullet>> bullets;
+    std::list<std::unique_ptr<Bullet>> bullets; //Сделать list ом
 
-    std::vector<std::unique_ptr<EnemyBullet>> enemybullets;
+    std::list<std::unique_ptr<EnemyBullet>> enemybullets;
 
     Enemy m_Enemy;
     bool m_IsFocused; // Фокус окна

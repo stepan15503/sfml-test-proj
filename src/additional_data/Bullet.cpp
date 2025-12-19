@@ -28,7 +28,7 @@ Sprite Bullet::getSprite()
     return *m_Sprite;
 }
 
-void Bullet::setPosition(Vector2f position)
+void Bullet::setPosition(Vector2i position)
 {
     m_Position.x=position.x;
     m_Position.y=position.y;

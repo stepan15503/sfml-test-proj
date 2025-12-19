@@ -6,11 +6,11 @@ using namespace sf;
 void Engine::update()
 {
     m_Enemy.update(m_Player.getPosition(),&enemybullets);
-    m_Player.update();
-    for (int i=0;i<bullets.size();i++){
-        bullets[i]->update();
+    m_Player.update(checkCollisionPE(&enemybullets, m_Player.getPosition(), m_Player.getSpeedVector()),&enemybullets);
+    for (auto iter=bullets.begin();iter!=bullets.end();iter++){
+        (*iter)->update();
     }
-     for (int i=0;i<enemybullets.size();i++){
-        enemybullets[i]->update();
+    for (auto iter=enemybullets.begin();iter!=enemybullets.end();iter++){
+        (*iter)->update();
     }
 }
